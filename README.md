@@ -6,7 +6,7 @@
 
 Like the keel of a ship, it keeps a project steady and on course when the AI tool, the AI model, or the developer changes.
 
-[![Version](https://img.shields.io/badge/version-2.1.0-0b5fff)](https://github.com/rickflashman/keel/releases)
+[![Version](https://img.shields.io/badge/version-2.2.0-0b5fff)](https://github.com/rickflashman/keel/releases)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Works with](https://img.shields.io/badge/works%20with-Claude%20Code%20%7C%20Codex%20%7C%20Cursor%20%7C%20Copilot-6f42c1)](#-install)
 

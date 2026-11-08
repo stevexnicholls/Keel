@@ -1,12 +1,21 @@
 > Tracker: TICKET-# (name of project)
 Verified: YYYY-MM-DD (last as-built review or release; the only date to trust)
 
+## Architecture at a glance
+(For a reader who has forgotten the project; at most about 20 lines. Keep it true to the code; no history.)
+- What it is: (1 to 3 sentences)
+- Main parts: (the components and what each one does, such as UI, API, worker, database, external services)
+- How they connect: (the main flow of data or control, in a list or a diagram link)
+- Where to start reading the code: (entry points and the folders that matter most)
+- Key decisions: (the 3 to 5 that shape everything, each linked to docs/decisions/)
+- Related docs: docs/DEVELOPMENT.md (run it), docs/FEATURES.md (use it)
+
 ## Stack
 ## Folder layout
 ## Commands
 (Build, run, test, and lint commands added during development. Commands from the ticket stay in README.md.)
 ## Data model & APIs
-(Include migrations, personal data, and retention, or say the project has none.)
+(Design of the data model and of any interfaces other programs use. Include migrations, personal data, and retention, or say the project has none. How to use an interface goes in docs/FEATURES.md; link a generated reference here or there if one exists.)
 ## Auth & security
 ## Hosting & deployment
 ## Environment facts

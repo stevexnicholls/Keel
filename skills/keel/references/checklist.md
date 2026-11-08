@@ -1,4 +1,4 @@
-# KEEL 2.1.0: checklist
+# KEEL 2.2.0: checklist
 
 Reference for the `keel` skill, generated from `KEEL.md` (https://github.com/rickflashman/keel). Do not edit by hand.
 
@@ -6,9 +6,10 @@ Reference for the `keel` skill, generated from `KEEL.md` (https://github.com/ric
 
 After creating the initial files, confirm each item and report any that fail.
 
-- [ ] `README.md`, `docs/SPEC.md`, `docs/ARCHITECTURE.md`, `docs/PLAN.md`, and `docs/RELEASE-CHECKLIST.md` exist, from the starter templates, unless the developer chose not to use one and it is on the `AGENTS.md` "Not used" line.
+- [ ] `README.md`, `docs/SPEC.md`, `docs/ARCHITECTURE.md`, `docs/PLAN.md`, `docs/RELEASE-CHECKLIST.md`, `docs/DEVELOPMENT.md`, and `docs/FEATURES.md` exist, from the starter templates, unless the developer chose not to use one and it is on the `AGENTS.md` "Not used" line.
 - [ ] Every SPEC acceptance criterion has an ID and a matching check in `RELEASE-CHECKLIST.md`. `SPEC.md` has the Glossary and Constraints headings.
 - [ ] `ARCHITECTURE.md` has the Environment facts and Operations sections and the area map with a Docs row. The docs check script exists, is listed in the map, and passes.
+- [ ] `DEVELOPMENT.md` and `FEATURES.md` exist from their templates. `README.md` has the Start here section and links to both. `ARCHITECTURE.md` has the Architecture at a glance section. In a migration or an as-built review, content inferred from code is marked "Inferred, needs developer review", and steps that were not run say "Not run yet".
 - [ ] `PLAN.md` has the Definition of ready, the Definition of done, and the work board.
 - [ ] A project with a UI has `docs/DESIGN.md` and `docs/DESIGN-GUIDE.html`. A project without one has neither, and `AGENTS.md` does not list them.
 - [ ] `AGENTS.md` is at most 120 lines and 1,200 words, and has the version stamp, the precedence line, and the Project documentation standard, Making changes, Testing, Reporting, Session handoff, Docs, and Skills sections.

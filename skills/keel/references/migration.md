@@ -1,4 +1,4 @@
-# KEEL 2.1.0: migration
+# KEEL 2.2.0: migration
 
 Reference for the `keel` skill, generated from `KEEL.md` (https://github.com/rickflashman/keel). Do not edit by hand.
 
@@ -28,7 +28,7 @@ Use this section when the project already has documentation: another format, a s
    - Migrate only the content mapped in step 4. Reorganize its original wording; do not rewrite or drop it. Never invent content: if a section has no source, keep the heading and write "(Not documented yet.)" Mark content inferred from code "Inferred, needs developer review" in SPEC and DESIGN.
    - Give each acceptance criterion an ID, and create `RELEASE-CHECKLIST.md` with a matching check for each, carrying in existing test plans and release checklists.
    - Build the `ARCHITECTURE.md` area map from the existing code and tests, as its template says. If no command can run one area alone, write "(Full suite only)" and report it. Do not run the tests during the migration unless the developer asks. Write the docs check script and add its row.
-   - Put user manuals or help content in `docs/USER-GUIDE.md`, and their images in `docs/images/`. Offer to convert the guide to Simplified Technical English. Put runbooks and operations notes in the `ARCHITECTURE.md` Operations section, or `docs/RUNBOOK.md` if they pass a page.
+   - Put user manuals or help content in `docs/USER-GUIDE.md`, and their images in `docs/images/`. Offer to convert the guide to Simplified Technical English. Put runbooks and operations notes in the `ARCHITECTURE.md` Operations section, or `docs/RUNBOOK.md` if they pass a page. Put setup, install, and run-it notes in `docs/DEVELOPMENT.md`, and notes on what each feature does and how to use it (including API or command references written by hand) in `docs/FEATURES.md`. Where the existing docs have neither, write them from the code as the as-built review says, marked "Inferred, needs developer review".
    - Copy decision records into `docs/decisions/` word for word, keeping their status (Accepted if none). Add the approved decision notes, using "(Not documented yet.)" for any part with no source, and number all notes together in date order. Link each approved research entry from its decision note.
    - Merge the rules files into `AGENTS.md`. Put project-specific rules under Conventions, Claude-only rules under Claude-only notes in `CLAUDE.md`, and Copilot-only rules under Copilot-only notes in `.github/copilot-instructions.md`. Report conflicts with this standard or between files. Then replace `CLAUDE.md` and `.github/copilot-instructions.md` with their templates, keeping those notes.
    - Move lasting content from handoff, session-note, or TODO files to its proper doc, and leftovers to `docs/HANDOFF.md` as dated bullets, with the routing printed.
@@ -55,4 +55,12 @@ Use this section when the project already has documentation: another format, a s
      4. `HANDOFF.md`: in the header, change "about 40 lines" to "at most 40 lines", and add the Close routine line from the template. In the Routing line, add "and unfinished tasks" to the PLAN.md route, and "environment facts" to the ARCHITECTURE.md route.
      5. Docs check: use the caps of rule 8 in checks 1 and 2 (`AGENTS.md`: a warning above 120 lines or 1,200 words, a failure above 140 lines or 1,500 words; handoff: a warning above 40 lines, a failure above 50). Add the carry count to check 2, and the root folder files and the Kept as is line to check 5. Update the script's header comment. Run it. Report any root doc files it finds, and offer to absorb them.
      6. Tell the developer that the cross-compare review and the docs cleanup are available on request.
+   - **2.1.0 to 2.2.0:** Add the new files, headings, and template lines directly once the developer approves the plan. Change no accepted SPEC or DESIGN text.
+     1. `docs/DEVELOPMENT.md` and `docs/FEATURES.md`: create both from their templates. Move existing setup and usage content into them (migration step 6); write the rest from the code, marked "Inferred, needs developer review", with `Verified: (not yet verified)`. Offer the as-built review for the feature entries.
+     2. `README.md`: add the Start here section, and a pointer to `docs/DEVELOPMENT.md` under Run it.
+     3. `ARCHITECTURE.md`: add the Architecture at a glance section (from the code and the existing Stack and Folder layout content), and the new guidance line under Data model & APIs.
+     4. `PLAN.md`: add the `FEATURES.md` and `DEVELOPMENT.md` line to the Definition of done. `RELEASE-CHECKLIST.md`: add the clean-state check, and replace the docs line (the template shows both).
+     5. `AGENTS.md`: replace every template section with its 2.2.0 version, keep the project's own lines, add the catch-up line under Session handoff and the two Docs entries, and set the stamp to `Aligned to KEEL 2.2.0 (https://github.com/rickflashman/keel)`. Stay within the caps (rule 8).
+     6. Docs check: add checks 10 and 11, update the script's header comment, and run it. Report the result.
+     7. Tell the developer about the catch-up routine ("catch me up").
 9. **Report** what moved where, what was inferred, which Superseded content was not migrated and what replaced it, what was left unmapped, and any conflicts. Also list, with file names, each superseded approach that the code still appears to use (possible dead code or an unfinished change). Run the Initialization checklist and mark any item that does not pass. Then continue with *After the path* (Initialization rules).

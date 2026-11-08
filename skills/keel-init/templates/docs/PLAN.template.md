@@ -34,6 +34,7 @@ Before calling a task done:
 - Affected docs updated, as listed in the AGENTS.md Docs list (SPEC and DESIGN changes written as PROPOSED blocks; all other docs updated directly)
 - DESIGN-GUIDE.html, if it exists, regenerated if DESIGN.md changed
 - USER-GUIDE.md, if it exists, updated if user-facing behavior changed
+- FEATURES.md updated if a feature was added, changed, or removed, or its usage changed; DEVELOPMENT.md updated if setup, configuration, or run steps changed
 - RELEASE-CHECKLIST.md updated if acceptance criteria changed
 - `.env.example` updated if environment variables changed
 - AGENTS.md Docs and Skills lists updated if files or skills changed

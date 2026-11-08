@@ -1,18 +1,18 @@
 ---
 name: keel-upgrade
-description: "KEEL 2.1.0 migration and upgrade: brings an existing project's documentation up to the KEEL standard (inventory, currency, mapping, approval, migrate, archive), upgrades a project on an older KEEL or AI-PROJECT-DOCS-STANDARD version, or switches a project from the KEEL.md file to this skill. Use when the developer runs keel-upgrade (/keel:keel-upgrade or /keel-upgrade), says 'migrate the docs to KEEL', 'upgrade KEEL', or 'switch to the KEEL skill'."
+description: "KEEL 2.2.0 migration and upgrade: brings an existing project's documentation up to the KEEL standard (inventory, currency, mapping, approval, migrate, archive), upgrades a project on an older KEEL or AI-PROJECT-DOCS-STANDARD version, or switches a project from the KEEL.md file to this skill. Use when the developer runs keel-upgrade (/keel:keel-upgrade or /keel-upgrade), says 'migrate the docs to KEEL', 'upgrade KEEL', or 'switch to the KEEL skill'."
 disable-model-invocation: true
 argument-hint: "[migrate | upgrade | switch]"
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
   source: "https://github.com/rickflashman/keel"
 ---
-# KEEL 2.1.0: migrate, upgrade, or switch
+# KEEL 2.2.0: migrate, upgrade, or switch
 
-Bring an existing project up to KEEL version 2.1.0 (November 6, 2026), https://github.com/rickflashman/keel. Three cases:
+Bring an existing project up to KEEL version 2.2.0 (November 7, 2026), https://github.com/rickflashman/keel. Three cases:
 
 - **Migration:** the project has documentation in another form (a README, notes, rules files, an older wiki export). Follow *Migrating or upgrading an existing project* below, steps 1 to 9.
-- **Upgrade:** the project follows an older version of this standard (the stamp in `AGENTS.md` is older than 2.1.0, or names *AI-PROJECT-DOCS-STANDARD*). Do steps 1, 8, and 9. `references/changelog.md` lists what changed in each version.
+- **Upgrade:** the project follows an older version of this standard (the stamp in `AGENTS.md` is older than 2.2.0, or names *AI-PROJECT-DOCS-STANDARD*). Do steps 1, 8, and 9. `references/changelog.md` lists what changed in each version.
 - **Switch to the skill:** the project has `KEEL.md` in its root folder and the developer wants this skill to be the reference instead. Follow the Switch to the skill path in the Initialization rules below.
 
 If the developer gave instructions with the command, follow them: $ARGUMENTS
@@ -41,10 +41,10 @@ The rest of this file holds the initialization rules, the migration and upgrade 
 - **As-built review:** A review of existing code, offered after the path for a project with code (see After the path). The developer may decline or choose only some areas. On approval, follow these steps in order:
   1. **Feature inventory.** List the features the code implements, each with its entry points (routes, commands, screens, jobs, public modules) and folders. Show the list. The developer confirms, renames, merges, or drops items. Do not read deeper until the list is confirmed.
   2. **Area map.** Fill the area map in `ARCHITECTURE.md` for the confirmed areas: code, entry points, tests, command, dependencies (from imports). Set Confidence to Inferred on every row, and mark the table "Inferred from code, needs developer review".
-  3. **One area at a time, with a budget.** Read 1 area, write or update its `ARCHITECTURE.md` content (stack, folders, commands, data model, operations), then stop and report before the next. Use a subagent per area where the tool allows, so the main context stays small. If an area exceeds the budget, set its Confidence to Low and record where reading stopped.
+  3. **One area at a time, with a budget.** Read 1 area, write or update its `ARCHITECTURE.md` content (stack, folders, commands, data model, operations), its `FEATURES.md` entry (what it does and how to use it, with an example taken from the code or its tests), and the matching `DEVELOPMENT.md` steps, then stop and report before the next. Use a subagent per area where the tool allows, so the main context stays small. If an area exceeds the budget, set its Confidence to Low and record where reading stopped.
   4. **SPEC from behavior.** For each area, write feature text and acceptance criteria that describe what the code does now. If `SPEC.md` is empty or holds only the template, seed it and mark the content "Inferred from code, needs developer review". If `SPEC.md` has content, write the differences as PROPOSED blocks (see *Proposed changes to SPEC and DESIGN*). The same applies to `DESIGN.md`. Never change accepted SPEC or DESIGN text from code.
-  5. **Differences and health.** Report what is built but not specified, what is specified but not built, superseded approaches still in the code, areas with no tests, secrets found, and dependencies with known issues. Lasting findings go to `RESEARCH.md`; questions go to `HANDOFF.md` under Waiting. Set the Verified date in `ARCHITECTURE.md`, and in `SPEC.md` once the developer has reviewed it.
-  6. **Stop conditions.** Change no code. Do not run tests unless the developer asks.
+  5. **Differences and health.** Report what is built but not specified, what is specified but not built, superseded approaches still in the code, areas with no tests, secrets found, and dependencies with known issues. Lasting findings go to `RESEARCH.md`; questions go to `HANDOFF.md` under Waiting. Write the Architecture at a glance section. `DEVELOPMENT.md` and `FEATURES.md` content from code is marked "Inferred, needs developer review", and a step or example that was not run says "Not run yet". Set the Verified date in `ARCHITECTURE.md`, and in `SPEC.md`, `DEVELOPMENT.md`, and `FEATURES.md` once the developer has reviewed (and, for the steps and examples, run) them.
+  6. **Stop conditions.** Change no code. Do not run tests, setup steps, or feature examples unless the developer asks.
   7. **Offer the cross-compare review.** End the report with 1 line that says the cross-compare review is available (see `references/reviews.md`). Inferred docs are where most conflicts come from. Run the review only if the developer asks for it.
 - **SPEC interview:** Interview the developer about the gaps in `SPEC.md`: edge cases, non-goals, trade-offs, constraints, glossary terms, and acceptance criteria. Ask a few questions at a time, and skip questions the docs already answer. Write the resulting SPEC changes as PROPOSED blocks for acceptance (rule 1). The developer may decline.
 
@@ -74,7 +74,7 @@ Use this section when the project already has documentation: another format, a s
    - Migrate only the content mapped in step 4. Reorganize its original wording; do not rewrite or drop it. Never invent content: if a section has no source, keep the heading and write "(Not documented yet.)" Mark content inferred from code "Inferred, needs developer review" in SPEC and DESIGN.
    - Give each acceptance criterion an ID, and create `RELEASE-CHECKLIST.md` with a matching check for each, carrying in existing test plans and release checklists.
    - Build the `ARCHITECTURE.md` area map from the existing code and tests, as its template says. If no command can run one area alone, write "(Full suite only)" and report it. Do not run the tests during the migration unless the developer asks. Write the docs check script and add its row.
-   - Put user manuals or help content in `docs/USER-GUIDE.md`, and their images in `docs/images/`. Offer to convert the guide to Simplified Technical English. Put runbooks and operations notes in the `ARCHITECTURE.md` Operations section, or `docs/RUNBOOK.md` if they pass a page.
+   - Put user manuals or help content in `docs/USER-GUIDE.md`, and their images in `docs/images/`. Offer to convert the guide to Simplified Technical English. Put runbooks and operations notes in the `ARCHITECTURE.md` Operations section, or `docs/RUNBOOK.md` if they pass a page. Put setup, install, and run-it notes in `docs/DEVELOPMENT.md`, and notes on what each feature does and how to use it (including API or command references written by hand) in `docs/FEATURES.md`. Where the existing docs have neither, write them from the code as the as-built review says, marked "Inferred, needs developer review".
    - Copy decision records into `docs/decisions/` word for word, keeping their status (Accepted if none). Add the approved decision notes, using "(Not documented yet.)" for any part with no source, and number all notes together in date order. Link each approved research entry from its decision note.
    - Merge the rules files into `AGENTS.md`. Put project-specific rules under Conventions, Claude-only rules under Claude-only notes in `CLAUDE.md`, and Copilot-only rules under Copilot-only notes in `.github/copilot-instructions.md`. Report conflicts with this standard or between files. Then replace `CLAUDE.md` and `.github/copilot-instructions.md` with their templates, keeping those notes.
    - Move lasting content from handoff, session-note, or TODO files to its proper doc, and leftovers to `docs/HANDOFF.md` as dated bullets, with the routing printed.
@@ -101,6 +101,14 @@ Use this section when the project already has documentation: another format, a s
      4. `HANDOFF.md`: in the header, change "about 40 lines" to "at most 40 lines", and add the Close routine line from the template. In the Routing line, add "and unfinished tasks" to the PLAN.md route, and "environment facts" to the ARCHITECTURE.md route.
      5. Docs check: use the caps of rule 8 in checks 1 and 2 (`AGENTS.md`: a warning above 120 lines or 1,200 words, a failure above 140 lines or 1,500 words; handoff: a warning above 40 lines, a failure above 50). Add the carry count to check 2, and the root folder files and the Kept as is line to check 5. Update the script's header comment. Run it. Report any root doc files it finds, and offer to absorb them.
      6. Tell the developer that the cross-compare review and the docs cleanup are available on request.
+   - **2.1.0 to 2.2.0:** Add the new files, headings, and template lines directly once the developer approves the plan. Change no accepted SPEC or DESIGN text.
+     1. `docs/DEVELOPMENT.md` and `docs/FEATURES.md`: create both from their templates. Move existing setup and usage content into them (migration step 6); write the rest from the code, marked "Inferred, needs developer review", with `Verified: (not yet verified)`. Offer the as-built review for the feature entries.
+     2. `README.md`: add the Start here section, and a pointer to `docs/DEVELOPMENT.md` under Run it.
+     3. `ARCHITECTURE.md`: add the Architecture at a glance section (from the code and the existing Stack and Folder layout content), and the new guidance line under Data model & APIs.
+     4. `PLAN.md`: add the `FEATURES.md` and `DEVELOPMENT.md` line to the Definition of done. `RELEASE-CHECKLIST.md`: add the clean-state check, and replace the docs line (the template shows both).
+     5. `AGENTS.md`: replace every template section with its 2.2.0 version, keep the project's own lines, add the catch-up line under Session handoff and the two Docs entries, and set the stamp to `Aligned to KEEL 2.2.0 (https://github.com/rickflashman/keel)`. Stay within the caps (rule 8).
+     6. Docs check: add checks 10 and 11, update the script's header comment, and run it. Report the result.
+     7. Tell the developer about the catch-up routine ("catch me up").
 9. **Report** what moved where, what was inferred, which Superseded content was not migrated and what replaced it, what was left unmapped, and any conflicts. Also list, with file names, each superseded approach that the code still appears to use (possible dead code or an unfinished change). Run the Initialization checklist and mark any item that does not pass. Then continue with *After the path* (Initialization rules).
 
 ## Authority and file handling
@@ -132,6 +140,8 @@ project/
     ├── ARCHITECTURE.md
     ├── PLAN.md
     ├── RELEASE-CHECKLIST.md
+    ├── DEVELOPMENT.md
+    ├── FEATURES.md
     ├── decisions/             (recommended)
     ├── HANDOFF.md             (recommended; created when first needed)
     ├── handoff/               (teams only; one <developer>.md per developer, in place of HANDOFF.md)
@@ -162,6 +172,8 @@ The docs check script (see *Docs check and drift report*) lives where the projec
 | 6 | `CLAUDE.md` | Required | Loads `AGENTS.md` into Claude Code with an import line, plus optional Claude-only notes | n/a |
 | 7 | `.github/copilot-instructions.md` | Required | Points GitHub Copilot to `AGENTS.md` and its listed skills, plus optional Copilot-only notes | n/a |
 | 8 | `docs/RELEASE-CHECKLIST.md` | Required | Release gate: one check per SPEC acceptance criterion, the non-test release steps, and the latest release result | n/a |
+| 9 | `docs/DEVELOPMENT.md` | Required | Get running: prerequisites, setup, configuration, how to start the dev environment and know it works, test, debug, reset, troubleshooting. For anyone returning to the project after a break. | Run commands |
+| 10 | `docs/FEATURES.md` | Required | What exists now and how to use it: one entry per feature, with what it does, how to use it through the project's interface (screen, command, API call, function), an example, and its status | n/a |
 | - | `docs/decisions/` | Recommended | One short note per major decision, numbered in order. Create the folder with the first decision. | n/a |
 | - | `docs/HANDOFF.md` | Recommended | Short handoff to the next session: next action, open items, traps. Dated bullets, within the rule 8 cap. Create it at the first session close, or earlier to record something important. | n/a |
 | - | `docs/handoff/<developer>.md` | Teams only | One handoff per developer, same template and rules as `HANDOFF.md`. Used in place of `HANDOFF.md` when more than 1 developer works on the project. | n/a |
@@ -185,6 +197,17 @@ The docs check script (see *Docs check and drift report*) lives where the projec
 **Doc files outside the standard:** A migration brings existing docs into the standard at setup. After setup, new doc files can still appear: a notes file, a Word or PDF file, a wiki export, or a second README. When the AI finds such a file, inside or outside `docs/`, it offers to absorb it. Do not link to the file as a source instead. To absorb a file, follow migration steps 3 to 7 for that file only (see *Migrating or upgrading an existing project*): resolve currency, map the current content to its target docs, get approval, move the content, and archive the original in `docs/archive/` with a row in `INDEX.md`. Then update every link to the file. If the developer declines, list the file on the "Kept as is" line of the `AGENTS.md` Docs list, and do not offer again. The docs check flags these files (check 5).
 
 **Projects with no UI:** Do not create `DESIGN.md` or `DESIGN-GUIDE.html`, and leave them out of the `AGENTS.md` Docs list. If the project later gains a UI, create both from the templates.
+
+**Returning to a project:** The docs must let a developer, or an AI with no memory, resume work after a break without asking anyone. This works for any project type (web app, API, CLI, library, data pipeline, mobile app). The reading order is in the `README.md` "Start here" section: `docs/DEVELOPMENT.md` (how to run it), `docs/FEATURES.md` (what it does and how to use it), the "Architecture at a glance" section of `docs/ARCHITECTURE.md` (how it fits together), then the handoff file and the work board (where work stopped). Each file has its own job:
+
+| Question | File |
+|---|---|
+| How do I run and test it? | `DEVELOPMENT.md` |
+| What does it do now, and how do I use it? | `FEATURES.md` (intent and acceptance criteria stay in `SPEC.md`; the end-user manual is `USER-GUIDE.md`) |
+| How is it built? | `ARCHITECTURE.md` |
+| Where did we stop? | the handoff file and `PLAN.md` |
+
+`FEATURES.md` describes the interface the project actually has. Do not add interface-specific files to the standard: where a generated reference exists (an OpenAPI file, generated API docs, a CLI `--help` listing), link to it from the feature entry; the entry still says how to use the feature. When a session starts after a long gap, or the developer asks to be caught up, run the catch-up routine (rule 5).
 
 **Projects with end users:** Create `USER-GUIDE.md` once end users have a working feature to use. Write it in ASD-STE100 Simplified Technical English (STE): short sentences, active voice, and approved words. Describe current behavior as tasks, and put screenshots in `docs/images/`.
 
@@ -274,7 +297,7 @@ Every change gets 1 class before work starts. The class is defined here once; ru
 
 1. **Humans own SPEC and DESIGN (when it exists),** including the acceptance criteria and their IDs. After the first draft is seeded at setup, the AI may only *propose* edits, as PROPOSED blocks in the file, and must wait for acceptance. Otherwise requirements quietly drift to match whatever the code does.
 2. **The AI keeps the docs current.** Every time the application changes, the AI updates the affected files in place, in the same task, not afterward. To find them, it searches `docs/` for each path, name, label, and behavior it changed; the area map and the Glossary give the names. It writes SPEC and DESIGN edits as PROPOSED blocks in the same task, never skips them silently, and never defers doc updates to `HANDOFF.md`. Never create a new version of a doc (such as `SPEC-v2.md`) beside the old one; that leaves several conflicting versions. To change a decision, follow rule 3. How to handle each file:
-   - **Update directly:** ARCHITECTURE (including the area map), PLAN (including the work board), the `AGENTS.md` Docs and Skills lists, `.env.example` (when environment variables change), and, when used, MOCKUP, RESEARCH, RUNBOOK, and USER-GUIDE (current user-facing behavior only).
+   - **Update directly:** ARCHITECTURE (including the area map), DEVELOPMENT and FEATURES (when how to run the project, or what a feature does or how it is used, changes), PLAN (including the work board), the `AGENTS.md` Docs and Skills lists, `.env.example` (when environment variables change), and, when used, MOCKUP, RESEARCH, RUNBOOK, and USER-GUIDE (current user-facing behavior only).
    - **Propose:** SPEC and DESIGN, as PROPOSED blocks (rule 1).
    - **Regenerate:** `DESIGN-GUIDE.html` (when used) every time `DESIGN.md` changes.
    - **`RELEASE-CHECKLIST.md`:** keep one check per accepted acceptance criterion; record results only by running the checks (rule 6).
@@ -286,6 +309,12 @@ Every change gets 1 class before work starts. The class is defined here once; ru
 
    **Start routine**, at the start of every session: read the handoff file if it exists, and the work board in `PLAN.md`. Then state the next action in 1 line before you start work. If the handoff file conflicts with another doc, the other doc wins: say so.
 
+   **Catch-up routine**, when a session starts after a long gap (a week or more since the last handoff or Verified date), or when the developer asks ("catch me up"). Read only; change nothing unless the developer asks:
+   1. Read the handoff file, the work board in `PLAN.md`, `DEVELOPMENT.md`, and the Architecture at a glance section.
+   2. Summarize what changed since the `Verified` dates in `DEVELOPMENT.md`, `FEATURES.md`, and `ARCHITECTURE.md`: version-control history if any; else `CHANGELOG.md` and the work board Started dates.
+   3. Offer to run the `DEVELOPMENT.md` steps from a clean state, to confirm they still work.
+   4. Print a briefing of at most 15 lines: where the project stands, how to run it, what each feature does in 1 line, the next action, and which docs look stale (older `Verified` date than the changes, or a command or path that no longer exists). Fix stale docs only after the developer approves.
+
    **Close routine**, when the developer says the session is closing, before any compact or clear (for example, `/compact` or `/clear`), or when the session has used most of its context:
    1. **Route.** For each item worth keeping, print 1 line: `item -> target doc`, or `item -> HANDOFF (Next | Waiting | Assumed | Decided | Trap)`. Use the routing table. An item that is already in the current `HANDOFF.md` cannot go back to HANDOFF: route it to its doc, to a work board row, or delete it. The one exception is a Waiting bullet for a PROPOSED block that is still pending; check 8 tracks how old those blocks are.
    2. **Write** the routed items into their docs (PROPOSED blocks for SPEC and DESIGN).
@@ -293,11 +322,11 @@ Every change gets 1 class before work starts. The class is defined here once; ru
 
    A close with no routing report is incomplete. `HANDOFF.md` stays within its cap (rule 8). Every bullet is dated; an item older than 1 session is moved or deleted, never copied forward. A copy with a new date is still a copy: the docs check compares the bullet text without its date and counts the carries (check 2). After a close at the context limit, tell the developer to start a new session from `HANDOFF.md`; do not continue on a compacted context. If something important would be lost sooner, record it right away in its proper doc or in `HANDOFF.md`, creating the file if needed. On a team, each developer's `docs/handoff/<developer>.md` follows the same rules.
 6. **A release is not approved until the release checklist passes.** Before every release, in this order:
-   1. A reviewer in a fresh context (a new session or a subagent, not the one that wrote the code) checks the code against the SPEC acceptance criteria, runs each command in `README.md` Run it and `ARCHITECTURE.md` Commands, and reads `README.md` and `USER-GUIDE.md` (if used) against the code. It reports only gaps that affect correctness, the requirements, or the docs. Fix each gap or list it for the developer.
+   1. A reviewer in a fresh context (a new session or a subagent, not the one that wrote the code) checks the code against the SPEC acceptance criteria, follows `DEVELOPMENT.md` from a clean state and runs each command in `README.md` Run it and `ARCHITECTURE.md` Commands, and reads `README.md`, `FEATURES.md`, and `USER-GUIDE.md` (if used) against the code, trying each feature by its "How to use it" example. It reports only gaps that affect correctness, the requirements, or the docs. Fix each gap or list it for the developer.
    2. Write the drift report (see *Docs check and drift report*). The developer fixes or accepts each finding.
    3. Run a full regression (rule 9): the whole test suite, the docs check, and every check in `RELEASE-CHECKLIST.md`. Never mark a check passed without running it.
    4. Confirm that no PROPOSED block remains in `SPEC.md` or `DESIGN.md`. Review new or upgraded dependencies (license, maintenance, known vulnerabilities).
-   5. Record how each check was verified, replace the Latest release section with the result, set the Verified date in `SPEC.md` and `ARCHITECTURE.md`, and add the release entry to `CHANGELOG.md` (create the file at the first release).
+   5. Record how each check was verified, replace the Latest release section with the result, set the Verified date in `SPEC.md`, `ARCHITECTURE.md`, `DEVELOPMENT.md`, and `FEATURES.md`, and add the release entry to `CHANGELOG.md` (create the file at the first release).
    6. A human gives the final approval.
 7. **Never put secrets in code or docs.** If the project uses environment variables, list their names in `.env.example`. Do not paste secrets or customer data into docs or the tracker. If the project uses version control, make sure `.gitignore` excludes `.env` and the `test-results/` folder (rule 9), creating or updating it if needed. This is the only version-control step this standard asks for; docs check 2 also reads the history of the handoff file.
 8. **Keep docs skimmable.** These are the caps, and the docs check uses the same numbers:
@@ -342,6 +371,8 @@ Every change gets 1 class before work starts. The class is defined here once; ru
 7. No file in `docs/` has a standard doc name plus a suffix such as `-v2`, `-old`, `-new`, `-copy`, or `-final`.
 8. PROPOSED blocks older than 14 days are listed (a warning, not a failure).
 9. No assignment-shaped secret in docs: `password`, `secret`, `api_key`, or `token`, followed by `=` or `:` and a value, or a private key header.
+10. Every area in the area map, except *Docs*, has a heading with the same name in `docs/FEATURES.md`, and every feature heading there names an area in the map (a warning for an extra heading; a failure for a missing one).
+11. `docs/DEVELOPMENT.md` and `docs/FEATURES.md` each have a `Verified:` line (a warning if it is `(not yet verified)`, or if the date is older than the latest `Verified` date in `ARCHITECTURE.md`).
 
 **Drift report** is a read-only report the AI writes before every release (rule 6) and whenever the developer asks ("run a drift report"). It never blocks and changes nothing. Each finding carries a certainty, and findings are never averaged. *Certain*: a mechanical check proves it. *Evidence*: the AI found it by reading, and the developer confirms it. *Inference*: a guess from dates, not from behavior.
 
@@ -351,6 +382,7 @@ Every change gets 1 class before work starts. The class is defined here once; ru
 | Code with no SPEC coverage | Evidence | Folders not in any area map row, or rows with no ACs |
 | An AC with no test, or a test with no AC | Certain | Area map ACs column against tests that cite `AC-n` in a name or comment |
 | A command, folder, file, or link in the docs that does not exist | Certain | The docs check (paths, links, commands); the reviewer for anything else |
+| A `DEVELOPMENT.md` step that fails from a clean state, or a `FEATURES.md` example that does not work | Evidence | The reviewer follows the steps and tries the examples (release, or the catch-up routine on request) |
 | A doc section older than the code it describes | Inference | The Verified date against the change history: version-control history if any; else the work board Started dates and `CHANGELOG.md`; else "Not run: no change history". Compares dates, not behavior. |
 
 The report goes in the task summary. Lasting findings go to `RESEARCH.md`. At a release, each finding is fixed or accepted by the developer.

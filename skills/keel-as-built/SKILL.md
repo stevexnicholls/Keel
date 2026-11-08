@@ -1,14 +1,14 @@
 ---
 name: keel-as-built
-description: "KEEL 2.1.0 as-built review of existing code: feature inventory, area map in ARCHITECTURE.md, SPEC acceptance criteria inferred from the code as PROPOSED blocks, and a differences and health report (built but not specified, specified but not built, no tests, secrets, risky dependencies). Changes no code. Use in a KEEL project when the developer runs keel-as-built (/keel:keel-as-built or /keel-as-built) or asks for an as-built review, to document existing code, or to set the Verified dates."
+description: "KEEL 2.2.0 as-built review of existing code: feature inventory, area map in ARCHITECTURE.md, SPEC acceptance criteria inferred from the code as PROPOSED blocks, and a differences and health report (built but not specified, specified but not built, no tests, secrets, risky dependencies). Changes no code. Use in a KEEL project when the developer runs keel-as-built (/keel:keel-as-built or /keel-as-built) or asks for an as-built review, to document existing code, or to set the Verified dates."
 argument-hint: "[area names to review, or 'all']"
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
   source: "https://github.com/rickflashman/keel"
 ---
-# KEEL 2.1.0: as-built review
+# KEEL 2.2.0: as-built review
 
-Document what the code does now, under KEEL version 2.1.0 (November 6, 2026), https://github.com/rickflashman/keel. Change no code. Do not run tests unless the developer asks.
+Document what the code does now, under KEEL version 2.2.0 (November 7, 2026), https://github.com/rickflashman/keel. Change no code. Do not run tests unless the developer asks.
 
 If the developer gave instructions with the command, such as the areas to review, follow them: $ARGUMENTS
 
@@ -24,10 +24,10 @@ If the developer gave instructions with the command, such as the areas to review
 **As-built review:** A review of existing code, offered after the path for a project with code (see After the path). The developer may decline or choose only some areas. On approval, follow these steps in order:
 1. **Feature inventory.** List the features the code implements, each with its entry points (routes, commands, screens, jobs, public modules) and folders. Show the list. The developer confirms, renames, merges, or drops items. Do not read deeper until the list is confirmed.
 2. **Area map.** Fill the area map in `ARCHITECTURE.md` for the confirmed areas: code, entry points, tests, command, dependencies (from imports). Set Confidence to Inferred on every row, and mark the table "Inferred from code, needs developer review".
-3. **One area at a time, with a budget.** Read 1 area, write or update its `ARCHITECTURE.md` content (stack, folders, commands, data model, operations), then stop and report before the next. Use a subagent per area where the tool allows, so the main context stays small. If an area exceeds the budget, set its Confidence to Low and record where reading stopped.
+3. **One area at a time, with a budget.** Read 1 area, write or update its `ARCHITECTURE.md` content (stack, folders, commands, data model, operations), its `FEATURES.md` entry (what it does and how to use it, with an example taken from the code or its tests), and the matching `DEVELOPMENT.md` steps, then stop and report before the next. Use a subagent per area where the tool allows, so the main context stays small. If an area exceeds the budget, set its Confidence to Low and record where reading stopped.
 4. **SPEC from behavior.** For each area, write feature text and acceptance criteria that describe what the code does now. If `SPEC.md` is empty or holds only the template, seed it and mark the content "Inferred from code, needs developer review". If `SPEC.md` has content, write the differences as PROPOSED blocks (see *Proposed changes to SPEC and DESIGN*). The same applies to `DESIGN.md`. Never change accepted SPEC or DESIGN text from code.
-5. **Differences and health.** Report what is built but not specified, what is specified but not built, superseded approaches still in the code, areas with no tests, secrets found, and dependencies with known issues. Lasting findings go to `RESEARCH.md`; questions go to `HANDOFF.md` under Waiting. Set the Verified date in `ARCHITECTURE.md`, and in `SPEC.md` once the developer has reviewed it.
-6. **Stop conditions.** Change no code. Do not run tests unless the developer asks.
+5. **Differences and health.** Report what is built but not specified, what is specified but not built, superseded approaches still in the code, areas with no tests, secrets found, and dependencies with known issues. Lasting findings go to `RESEARCH.md`; questions go to `HANDOFF.md` under Waiting. Write the Architecture at a glance section. `DEVELOPMENT.md` and `FEATURES.md` content from code is marked "Inferred, needs developer review", and a step or example that was not run says "Not run yet". Set the Verified date in `ARCHITECTURE.md`, and in `SPEC.md`, `DEVELOPMENT.md`, and `FEATURES.md` once the developer has reviewed (and, for the steps and examples, run) them.
+6. **Stop conditions.** Change no code. Do not run tests, setup steps, or feature examples unless the developer asks.
 7. **Offer the cross-compare review.** End the report with 1 line that says the cross-compare review is available (see `references/reviews.md`). Inferred docs are where most conflicts come from. Run the review only if the developer asks for it.
 
 **Proposed changes to SPEC and DESIGN:** The AI never edits accepted text in `SPEC.md` or `DESIGN.md` (rule 1). It writes each proposal in the file, next to the text it changes, as a PROPOSED block, never only in chat:

@@ -1,4 +1,4 @@
-# KEEL 2.1.0: starter templates
+# KEEL 2.2.0: starter templates
 
 Generated from `KEEL.md` (https://github.com/rickflashman/keel). Do not edit by hand. Each template is a file in this folder at the path it takes in the project, with `.template` before its extension: copy `docs/SPEC.template.md` to `docs/SPEC.md`.
 
@@ -45,6 +45,18 @@ Template: `templates/docs/decisions/0001-short-title.template.md`
 Template: `templates/docs/RELEASE-CHECKLIST.template.md`
 
 The release gate. Create it at setup with one check per acceptance criterion in `SPEC.md`, and keep it in step as the criteria change. Before each release, have a fresh-context review against the acceptance criteria and the docs, write the drift report, run a full regression, including every check, and replace the Latest release section. Example prompt: *"Prepare release 1.0: run the release checklist and record the results."*
+
+## `docs/DEVELOPMENT.md`
+
+Template: `templates/docs/DEVELOPMENT.template.md`
+
+For the developer, or the AI, who has to get the project running: the first time, or after a break. Write it so someone who remembers nothing can follow it top to bottom. Seed the commands from the ticket, and keep the same commands as `README.md` Run it and the `ARCHITECTURE.md` Commands (no conflicting copies; `README.md` keeps the short form and links here). Update it directly in the same task whenever setup, configuration, or run steps change (rule 2). A step that was not run yet is marked "Not run yet".
+
+## `docs/FEATURES.md`
+
+Template: `templates/docs/FEATURES.template.md`
+
+What the project does now and how to use it, for the team that builds it. It is current behavior, not intent (intent and acceptance criteria stay in `SPEC.md`) and not the end-user manual (`USER-GUIDE.md`). Use the same area names as the SPEC feature groups and the area map in `ARCHITECTURE.md`, so check 10 can match them; one entry per area, or per feature inside an area. Describe how to use each feature through the interface the project has: screen steps, a command, an API call, a function call, a configuration setting, or a file to produce. Give 1 concrete example that works. Where a generated reference exists (an OpenAPI file, generated API docs, a command's `--help`), link it from the entry; the entry still says how to use the feature. Update it directly in the same task whenever a feature or its usage changes (rule 2). Mark a feature that is not fully built "Partial" or "Planned".
 
 ## `docs/HANDOFF.md` *(recommended; create when first needed)*
 

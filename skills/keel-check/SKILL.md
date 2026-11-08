@@ -1,14 +1,14 @@
 ---
 name: keel-check
-description: "KEEL 2.1.0 docs check, drift report, and on-request reviews. Writes or runs the project's docs check script (AGENTS.md size and stamp, handoff size and carried bullets, AC coverage in the release checklist, broken paths and links, unlisted docs, headers, stray doc versions, stale PROPOSED blocks, secrets) and writes the read-only drift report (SPEC with no code, code with no SPEC, ACs with no test, stale doc sections). Only when the developer asks: a cross-compare review of all docs and the code, or a docs cleanup. Use in a KEEL project when the developer runs keel-check (/keel:keel-check or /keel-check), says 'run the docs check', 'run a drift report', 'run a cross-compare review', 'run a docs cleanup', or before a release."
+description: "KEEL 2.2.0 docs check, drift report, and on-request reviews. Writes or runs the project's docs check script (AGENTS.md size and stamp, handoff size and carried bullets, AC coverage in the release checklist, broken paths and links, unlisted docs, headers, stray doc versions, stale PROPOSED blocks, secrets) and writes the read-only drift report (SPEC with no code, code with no SPEC, ACs with no test, stale doc sections). Only when the developer asks: a cross-compare review of all docs and the code, or a docs cleanup. Use in a KEEL project when the developer runs keel-check (/keel:keel-check or /keel-check), says 'run the docs check', 'run a drift report', 'run a cross-compare review', 'run a docs cleanup', or before a release."
 argument-hint: "[docs | drift | both | cross-compare | cleanup]"
 metadata:
-  version: "2.1.0"
+  version: "2.2.0"
   source: "https://github.com/rickflashman/keel"
 ---
-# KEEL 2.1.0: docs check, drift report, and on-request reviews
+# KEEL 2.2.0: docs check, drift report, and on-request reviews
 
-Run the documentation checks of KEEL version 2.1.0 (November 6, 2026), https://github.com/rickflashman/keel. All of them are defined below.
+Run the documentation checks of KEEL version 2.2.0 (November 7, 2026), https://github.com/rickflashman/keel. All of them are defined below.
 
 If the developer gave instructions with the command, follow them: $ARGUMENTS
 
@@ -39,6 +39,8 @@ When the developer asked for only 1 of the 2 checks, do that one. Before a relea
 7. No file in `docs/` has a standard doc name plus a suffix such as `-v2`, `-old`, `-new`, `-copy`, or `-final`.
 8. PROPOSED blocks older than 14 days are listed (a warning, not a failure).
 9. No assignment-shaped secret in docs: `password`, `secret`, `api_key`, or `token`, followed by `=` or `:` and a value, or a private key header.
+10. Every area in the area map, except *Docs*, has a heading with the same name in `docs/FEATURES.md`, and every feature heading there names an area in the map (a warning for an extra heading; a failure for a missing one).
+11. `docs/DEVELOPMENT.md` and `docs/FEATURES.md` each have a `Verified:` line (a warning if it is `(not yet verified)`, or if the date is older than the latest `Verified` date in `ARCHITECTURE.md`).
 
 **Drift report** is a read-only report the AI writes before every release (rule 6) and whenever the developer asks ("run a drift report"). It never blocks and changes nothing. Each finding carries a certainty, and findings are never averaged. *Certain*: a mechanical check proves it. *Evidence*: the AI found it by reading, and the developer confirms it. *Inference*: a guess from dates, not from behavior.
 
@@ -48,6 +50,7 @@ When the developer asked for only 1 of the 2 checks, do that one. Before a relea
 | Code with no SPEC coverage | Evidence | Folders not in any area map row, or rows with no ACs |
 | An AC with no test, or a test with no AC | Certain | Area map ACs column against tests that cite `AC-n` in a name or comment |
 | A command, folder, file, or link in the docs that does not exist | Certain | The docs check (paths, links, commands); the reviewer for anything else |
+| A `DEVELOPMENT.md` step that fails from a clean state, or a `FEATURES.md` example that does not work | Evidence | The reviewer follows the steps and tries the examples (release, or the catch-up routine on request) |
 | A doc section older than the code it describes | Inference | The Verified date against the change history: version-control history if any; else the work board Started dates and `CHANGELOG.md`; else "Not run: no change history". Compares dates, not behavior. |
 
 The report goes in the task summary. Lasting findings go to `RESEARCH.md`. At a release, each finding is fixed or accepted by the developer.

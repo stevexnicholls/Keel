@@ -2,12 +2,12 @@
 AI working rules for every AI tool on this project; CLAUDE.md and .github/copilot-instructions.md only point here. At most 120 lines and 1,200 words: cut any line whose removal would not cause mistakes.
 
 ## Project documentation standard
-- Aligned to KEEL 2.1.0 (https://github.com/rickflashman/keel). Update when the docs are realigned.
+- Aligned to KEEL 2.2.0 (https://github.com/rickflashman/keel). Update when the docs are realigned.
 - `KEEL.md` in the project root, else the KEEL skill, is the authority for the doc structure, else the existing docs; read it before you change that structure. Never change, move, or delete `KEEL.md` without the developer's instruction.
-- Precedence, highest first: developer instruction > docs/decisions/ > SPEC.md and DESIGN.md (accepted text, not PROPOSED blocks) > ARCHITECTURE.md and PLAN.md > RUNBOOK.md, USER-GUIDE.md, and MOCKUP.md (mockups only) > HANDOFF.md and RESEARCH.md > CHANGELOG.md (history only) > the code (evidence only) > docs/archive/ (never a source).
+- Precedence, highest first: developer instruction > docs/decisions/ > SPEC.md and DESIGN.md (accepted text, not PROPOSED blocks) > ARCHITECTURE.md and PLAN.md > DEVELOPMENT.md, FEATURES.md, RUNBOOK.md, USER-GUIDE.md, and MOCKUP.md (mockups only) > HANDOFF.md and RESEARCH.md > CHANGELOG.md (history only) > the code (evidence only) > docs/archive/ (never a source).
 
 ## Commands
-- In README.md (from the ticket) and docs/ARCHITECTURE.md. Record new commands in ARCHITECTURE.md only.
+- In README.md (from the ticket), docs/DEVELOPMENT.md (setup and run), and docs/ARCHITECTURE.md. Record new commands in ARCHITECTURE.md only.
 
 ## Conventions
 - (Project rules, 1 per line, added when a real mistake happens: `Must | Never | Prefer: the rule. Why: the reason.` Example: `Must: a header comment on every file. Why: sessions start without memory.`)
@@ -41,6 +41,7 @@ AI working rules for every AI tool on this project; CLAUDE.md and .github/copilo
 
 ## Session handoff
 - Handoff file: docs/HANDOFF.md (teams: docs/handoff/<developer>.md). Start routine: read it and the work board in docs/PLAN.md; state the next action in 1 line.
+- After a long gap, or when asked "catch me up": follow the KEEL catch-up routine (read-only; DEVELOPMENT.md, FEATURES.md, the handoff, and the work board; print a briefing of at most 15 lines).
 - Close routine, when the developer closes the session, before any compact or clear, or when most of the context is used: follow the steps and routes at the top of the handoff file (if it is missing, use the KEEL handoff template). After a close at the context limit, tell the developer to start a new session from the handoff file.
 - At most 40 lines; every bullet dated; never copy a bullet forward, even with a new date (the docs check counts carries). Do not rewrite it after every change; if something important would be lost before the close, record it now. On a conflict, the other docs win: flag it.
 
@@ -52,6 +53,8 @@ AI working rules for every AI tool on this project; CLAUDE.md and .github/copilo
 - docs/SPEC.md: requirements, glossary, constraints.
 - docs/ARCHITECTURE.md: area map, structure, commands, environment facts, operations. Read before structural changes.
 - docs/PLAN.md: work board, Definition of ready and done. (docs/plans/M<n>.md: per-milestone boards, when used.)
+- docs/DEVELOPMENT.md: how to set up, run, test, and debug. Update when those steps change.
+- docs/FEATURES.md: what exists and how to use each feature. Update when a feature or its usage changes.
 - docs/RELEASE-CHECKLIST.md: before every release. A human approves.
 - docs/decisions/: past decisions.
 - docs/CHANGELOG.md: 1 entry at each release (create at the first); read only the top entries.
